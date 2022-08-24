@@ -1,0 +1,22 @@
+package com.itc.main.exceptions;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class ApplicationExceptionHandler {
+
+	
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, String> handleNotValidException(MethodArgumentNotValidException me)
+	{
+		Map<String,String> map=new HashMap<>();
+		map.put("error", "It should not empty");
+		return map;
+	}
+}

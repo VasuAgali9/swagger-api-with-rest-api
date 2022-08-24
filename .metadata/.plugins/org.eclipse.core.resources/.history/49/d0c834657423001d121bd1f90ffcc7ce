@@ -1,0 +1,36 @@
+package com.itc.main.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.itc.main.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product,Integer> {
+//T  : It is domain type that repository manages like Entity/Model class name
+//ID :  Type of id of the entity that repository manages
+	//Own methods inside the 
+	Product getProductByPname(String name);
+	
+	//Native Query
+	@Query(value = "select * from product",nativeQuery = true)
+	List<Product> getProducts();
+	
+	//Native Query
+		@Query(value="select p FROM Product p where p.price between ? and ?",nativeQuery = true)
+		List<Product> getProductByPrice(double p1,double p2);
+
+		
+	/*
+	//JPQL
+	@Query("select p FROM Product p where p.price = :p1 and p.price = :p2")
+	List<Product> getProductByPrice(@Param("p1") double p1,@Param("p2") double p2);
+	*/
+	//JPQL
+	@Modifying
+	@Query("update Product p set p.pname=:name where p.id=:id")
+    int updateProductByName(@Param("id") int id,@Param("name") String name);
+}

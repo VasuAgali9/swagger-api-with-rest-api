@@ -1,0 +1,33 @@
+package com.itc.main;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.itc.main.entity.Product;
+import com.itc.main.repository.ProductRepository;
+
+@SpringBootApplication
+public class DemoApplication implements CommandLineRunner{
+	
+	@Autowired
+	private ProductRepository productRepository;
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		 System.out.println("**inside the run  method***");
+		 Product entity=new Product();
+		 //entity.setPid(0);
+		 entity.setPname("Mobile");
+		 entity.setPrice(10000.00);
+		 this.productRepository.save(entity);
+		 
+		 
+	}
+
+}

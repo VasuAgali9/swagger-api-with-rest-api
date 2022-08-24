@@ -1,0 +1,19 @@
+package com.itc.main.aspect;
+
+import org.aspectj.lang.annotation.Aspect;
+
+@Aspect
+public class TxService {
+
+	
+	public void beginTx() {
+		System.out.println("start tx....");
+	}
+	
+	
+	public void commitTx() {
+		System.out.println("commit tx....");
+	}
+	
+	
+}

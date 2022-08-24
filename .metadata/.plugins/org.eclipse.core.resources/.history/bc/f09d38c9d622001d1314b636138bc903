@@ -1,0 +1,10 @@
+package com.itc.main.entity;
+
+
+public class Product {
+private int pid;
+private String pname;
+private double price;
+
+
+}
